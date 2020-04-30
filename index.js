@@ -3,7 +3,9 @@
 // 🏡 Task 1: Variables
 /* Create variables for principal, interest rate, and years. Assign them the values 200000, 0.05, and 30 respectively. Create another value called name and give it the value of your own name.
 */
-
+let principle = 200000;
+let interest_rate = 0.05;
+let years = 30;
 
 
 
@@ -15,8 +17,8 @@ Create a variable called `monthlyInterestRate` and give it the value of interest
 
 Create another variable called `periods` and give it the value of years*12.
 */
-
-
+let monthlyInterestRate = interest_rate / 12;
+let periods = years * 12;
 
 
 // 🏡 Task 2: Harder Math
@@ -28,6 +30,10 @@ Hint #2: you'll need to use the `math` object for parts of this calculation!
 
 When your math is correct, monthlyRate will equal 1073.64
 */
+let numerator = monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods);
+let denominator = Math.pow((1 + monthlyInterestRate), periods) - 1;
+
+let monthlyRate = principle * (numerator/denominator);
 
 
 
@@ -37,8 +43,26 @@ When your math is correct, monthlyRate will equal 1073.64
 
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
-
-
+function mortgageCalculator(principle, interest, years, creditScore){
+    let adjustedInterest = interest;
+  
+    if(creditScore > 740){
+      adjustedInterest = adjustedInterest - 0.005;
+    } else if (creditScore < 660){
+      adjustedInterest = adjustedInterest + 0.005;
+    }
+  
+    let monthlyInterestRate = adjustedInterest / 12;
+    let periods = years * 12;
+    let numerator = monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods);
+    let denominator = Math.pow((1 + monthlyInterestRate), periods) - 1;
+  
+    let monthlyRate = principle * (numerator/denominator);
+  
+    return `Mirwes, your monthly rate is ${monthlyRate}`;
+  }
+  
+  console.log(mortgageCalculator(300000, 0.06, 30, 800));
 
 
 
@@ -79,7 +103,30 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 */
 
 
-
+function variableInterestRate(p,iR, y,n) {
+    var principal = p;
+    var interestRate = iR;
+    var years = y;
+    var name = n;
+    var monthlyInterestRate = interestRate / 12;
+    var period = years * 12;
+    var numerator = monthlyInterestRate * Math.pow((1 + monthlyInterestRate), period);
+    var denominator = Math.pow((1 + monthlyInterestRate), period) -1;
+    var monthlyRate = principal * (numerator / denominator);
+    for (var i = 1; i<= 10; i++) {
+        var towpercentOfInterestRate = interestRate * 0.02;
+        if (i < 5) {
+            interestRate = interestRate - towpercentOfInterestRate;
+            interestRate += 0.005;
+        } else if (i ===5) {
+            interestRate = interestRate;
+            interestRate += 0.005;
+        } else if (i > 5) {
+            interestRate = interestRate + towpercentOfInterestRate;
+            interestRate += 0.005;
+        }
+    }
+}
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
 
